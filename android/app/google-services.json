@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688326938739",
+    "project_id": "rasa-92035",
+    "storage_bucket": "rasa-92035.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688326938739:android:5661e512f2a142973a9a06",
+        "android_client_info": {
+          "package_name": "com.example.rasa_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688326938739-8qgl7ma4vb5872d2m95ihrmg5mlr7qi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD80USQyg7qfsd1W3xA_4yBMIQ2kTvxqRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688326938739-8qgl7ma4vb5872d2m95ihrmg5mlr7qi3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
