@@ -14,11 +14,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static final navigatorKey =  GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Rasa Chatbot',
-      home: LoginScreen()
+      home:  LoginScreen()
     );
   }
 }
