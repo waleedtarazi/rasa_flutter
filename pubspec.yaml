@@ -40,6 +40,10 @@ dependencies:
   firebase_messaging: ^14.6.3
   firebase_core: ^2.14.0
   flutter_local_notifications: 
+  shared_preferences: ^2.2.0
+  get: ^4.6.5
+  flutter_svg: ^2.0.5
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
