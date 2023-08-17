@@ -46,11 +46,22 @@ dependencies:
   fluttertoast: ^8.2.2
   animated_theme_switcher: ^2.0.8
   # pick image
-  image_picker:
+  # image_picker:
   # store image
-  path_provider: 
+  # path_provider: 
 
+  # flutter_svg:
+  charts_flutter:
+  image_picker: ^0.8.4+2
+  path_provider: ^2.0.6
 
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  # cupertino_icons: ^1.0.2
+  # http:
+  get_storage:
+  flutter_secure_storage:
+  responsive_sizer: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -98,10 +109,21 @@ flutter:
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: DGAgnadeen
+      fonts:
+        - asset: fonts/DGAgnadeen-Regular.ttf
+        - asset: fonts/DGAgnadeen-Bold.ttf
+          weight: 600
+        - asset: fonts/DGAgnadeen-Bold.ttf
+          weight: 700
+    - family: DGShamael
+      fonts:
+        - asset: fonts/DGShamael-Regular.ttf
+        - asset: fonts/DGShamael-Bold.ttf
+          weight: 600
+        - asset: fonts/DGShamael-Bold.ttf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

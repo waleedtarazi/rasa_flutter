@@ -1,99 +1,84 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/Screens/Login/login_screen.dart';
-import 'package:rasa_flutter/Screens/Signup/signup_screen.dart';
-import 'package:rasa_flutter/Screens/Welcome/welcome_screen.dart';
-import 'package:rasa_flutter/Screens/home_screen.dart';
-import 'package:rasa_flutter/profile/themes.dart';
-import 'package:rasa_flutter/profile/utils/user_preferences.dart';
-import './screens/chat_screen.dart';
-import 'Screens/login_screen.dart';
-import 'Screens/sign_up.dart';
-import 'Screens/profile_screen.dart';
-import 'api/firebase_api.dart';
-import 'constants.dart';
-import 'controllers/profile_controller.dart';
-import 'profile/page/profile_page.dart';
-import 'services/auth.dart';
+import 'package:rasa_flutter/view/get_start/one_page/one_page.dart';
+import 'package:rasa_flutter/view/home_page/home_page.dart';
+import 'package:rasa_flutter/view/home_page/home_page_screen.dart';
 
-void main() async {
-  Get.put(AuthService());
-  Get.put(ProfileController());
+
+import '/view/Auth/Auth-screens/login_screen.dart';
+import 'api/firebase_api.dart';
+import 'constant/colors_constant.dart';
+import 'controller/user_profile_model.dart';
+
+
+
+void main()async{
+
   WidgetsFlutterBinding.ensureInitialized();
+  // fire base
   await Firebase.initializeApp();
   await FirebaseApi().initNotification();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // Create a new instance of FlutterSecureStorage
+  const storage = FlutterSecureStorage();
+  UserProfileModel userProfileModel = Get.put(UserProfileModel());
+  await userProfileModel.readUserProfile();
+  // Read the access token from secure storage
+  final token = await storage.read(key: 'token');
   
-  final authService = AuthService();
-  final isLoggedIn = await authService.isLoggedIn();
- runApp(MyApp(isLoggedIn: isLoggedIn));
+  Get.put(HomeController());
+
+  runApp( MyApp(token: token));
 }
 
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
-  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
-
-  static final navigatorKey =  GlobalKey<NavigatorState>();
+  final String? token;
+  const MyApp({Key? key, this.token}) : super(key: key);
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     final user = UserPreferences.myUser;
-    
+    UserProfileModel userProfileModel = Get.find();
+    String name = userProfileModel.name;
+    String email = userProfileModel.email;
+    return GetMaterialApp(
+      // supportedLocales: const [
+      //   Locale('ar','AR'), // English
+      // ],
+      // theme: ThemeData(
+      //   //primaryColor: primarycolor,
+      //   fontFamily: 'DGNadeen',
 
-    return ThemeProvider(
-            initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
-      child: Builder(
-        builder: (context) => GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        // theme: ThemeData(
-        //     primaryColor: kPrimaryColor,
-        //     scaffoldBackgroundColor: Colors.white,
-        //     elevatedButtonTheme: ElevatedButtonThemeData(
-        //       style: ElevatedButton.styleFrom(
-        //         elevation: 0, backgroundColor: kPrimaryColor,
-        //         shape: const StadiumBorder(),
-        //         maximumSize: const Size(double.infinity, 56),
-        //         minimumSize: const Size(double.infinity, 56),
-        //       ),
-        //     ),
-        //     inputDecorationTheme: const InputDecorationTheme(
-        //       filled: true,
-        //       fillColor: kPrimaryLightColor,
-        //       iconColor: kPrimaryColor,
-        //       prefixIconColor: kPrimaryColor,
-        //       contentPadding: EdgeInsets.symmetric(
-        //           horizontal: defaultPadding, vertical: defaultPadding),
-        //       border: OutlineInputBorder(
-        //         borderRadius: BorderRadius.all(Radius.circular(30)),
-        //         borderSide: BorderSide.none,
-        //       ),
-        //     )
-        //     ),
-       theme: ThemeData.dark(),
-        title: 'Rasa Chatbot',
-        initialRoute: isLoggedIn ? '/home' : '/welcomev2',
-        getPages: [
-          // GetPage(name: '/login', page: () => LoginScreen()),
-          // GetPage(name: '/signup', page: () => SignUpView()),
-          GetPage(name: '/home', page: () => HomePage()),
-         
-          GetPage(name: '/login', page: () => const LoginScreenV2()),
-          GetPage(name: '/welcomev2', page:()=> const WelcomeScreenV2()),
-          GetPage(name: '/signup', page: () => const SignUpScreenV2()),
-          
-          GetPage(name: '/profile', page: () => ProfilePageV4()),
-          // GetPage(name: '/chat', page: () => const ChatScreen())
-          // Register the HomeScreen here
-        ],
-      ),
-
-      ),
-  
+      // ),
+      debugShowCheckedModeBanner: false,
+      locale: const Locale('ar'),
+      home:token != null ? HomePage() : const OnePage(),
+      // getPages: [
+      //   GetPage(name: "/login_screen", page: ()=>const LoginScreen())
+      //
+      // ],
     );
+
   }
 }
+class HomeController extends GetxController {
+  final FlutterSecureStorage storage = Get.put(FlutterSecureStorage());
+  final RxBool isLoggedIn = false.obs;
+  // final  name = ''.obs;
+  // String email = '';
+  Future<void> logout() async {
+    // Remove the access token from secure storage
+    await storage.delete(key: 'token');
+    await storage.delete(key: 'name');
+    await storage.delete(key: 'phone');
+    await storage.delete(key: 'age');
+    await storage.delete(key: 'email');
+    // Set isLoggedIn to false
+    isLoggedIn.value = false;
+
+    // Navigate to the login screen
+    Get.offAll(() => const OnePage());
+  }
+
+}
+

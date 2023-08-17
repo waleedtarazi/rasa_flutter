@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:rasa_flutter/constant/constant.dart';
 import 'package:rasa_flutter/screens/chat_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../main.dart';
 
@@ -34,9 +36,9 @@ class FirebaseApi{
     if (message.notification?.title == 'Your Monthly analytics'){
       // navigate to the analytics screen
       print('\n+++++++++\n+++++++++\n in analytics screen \n+++++++\n+++++++++\n');
-      await MyApp.navigatorKey.currentState?.push(
-        MaterialPageRoute(builder: (context) => ChatScreen()),
-      );
+      // await MyApp.navigatorKey.currentState?.push(
+      //   MaterialPageRoute(builder: (context) => ChatScreen()),
+      // );
     }
   }
 
@@ -83,7 +85,7 @@ Future initLocalNotifications() async {
           _androidChannel.id, 
           _androidChannel.name,
           channelDescription: _androidChannel.description,
-          icon: '@drawable/rasa',
+          // icon: '@drawable/rasa',
           )
       ),
       payload: jsonEncode(message.toMap()),
@@ -93,10 +95,13 @@ Future initLocalNotifications() async {
 
 
   Future<void> initNotification() async {
+    FlutterSecureStorage secureStorage = FlutterSecureStorage();
     await _firebaseMessaging.requestPermission();
     final FCMToken = await _firebaseMessaging.getToken();
     print('\n \n Token--> : $FCMToken\n \n');
-    print('you have to store the token by sending it into the server');
+    storage.write('FCM',FCMToken);
+    final fcm_token = await storage.read('FCM');
+    print("FCM from local storage:\n" + fcm_token + "up\n");
     initPushNotification();
     initLocalNotifications();
   }

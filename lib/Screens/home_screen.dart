@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
+import 'package:rasa_flutter/Screens/doctors_screen.dart';
 import 'package:rasa_flutter/Screens/profile_screen.dart';
+import 'package:rasa_flutter/profile/page/profile_page.dart';
 // import 'package:rasa_flutter/profile/page/profile_page.dart';
 import 'package:rasa_flutter/screens/signup_screen.dart';
 
@@ -25,9 +27,9 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return HomeScreen();
       case 1:
-        return SignUpScreen();
+        return DoctorListScreen();
       case 2:
-        return ProfileScreen();
+        return ProfilePageV4();
       default:
         return Container();
     }

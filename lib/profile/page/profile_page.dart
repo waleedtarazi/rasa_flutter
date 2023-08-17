@@ -1,30 +1,35 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../controllers/profile_controller.dart';
 import '../model/user_v4.dart';
 import '../page/edit_profile_page.dart';
 import '../utils/user_preferences.dart';
-import '../widget/appbar_widget.dart';
 import '../widget/button_widget.dart';
-import '../widget/numbers_widget.dart';
 import '../widget/profile_widget.dart';
 
 class ProfilePageV4 extends StatefulWidget {
+  const ProfilePageV4({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ProfilePageV4State createState() => _ProfilePageV4State();
 }
 
 class _ProfilePageV4State extends State<ProfilePageV4> {
+
+  final ProfileController controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    const user = UserPreferences.myUser;
 
     return ThemeSwitchingArea(
       child: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(),
           body: ListView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             children: [
               ProfileWidget(
                 imagePath: user.imagePath,
@@ -35,11 +40,11 @@ class _ProfilePageV4State extends State<ProfilePageV4> {
                 },
               ),
               const SizedBox(height: 24),
-              buildName(user),
+              buildName(),
               const SizedBox(height: 24),
-              Center(child: buildUpgradeButton()),
+              // Center(child: buildUpgradeButton()),
               const SizedBox(height: 24),
-              NumbersWidget(),
+              // NumbersWidget(),
               const SizedBox(height: 48),
               buildAbout(user),
             ],
@@ -49,16 +54,16 @@ class _ProfilePageV4State extends State<ProfilePageV4> {
     );
   }
 
-  Widget buildName(UserV4 user) => Column(
+  Widget buildName( ) => Column(
         children: [
           Text(
-            user.name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            controller.name.toString(),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),
           Text(
-            user.email,
-            style: TextStyle(color: Colors.grey),
+            controller.email.toString(),
+            style: const TextStyle(color: Colors.grey),
           )
         ],
       );
@@ -69,18 +74,18 @@ class _ProfilePageV4State extends State<ProfilePageV4> {
       );
 
   Widget buildAbout(UserV4 user) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'About',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
               user.about,
-              style: TextStyle(fontSize: 16, height: 1.4),
+              style: const TextStyle(fontSize: 16, height: 1.4),
             ),
           ],
         ),

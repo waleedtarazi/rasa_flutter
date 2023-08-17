@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../constants.dart';
+import '../constants_auth.dart';
 import '../models/user.dart';
 
 
 class AuthService extends GetxService {
  Future<User?> login(String email, String password) async {
   final dio = Dio();
-  final url = 'https://mood-bot.onrender.com/user/signin';
+  final url = logInAPI;
   final data = {
     "email": email,
     "password": password
@@ -52,10 +52,13 @@ class AuthService extends GetxService {
   final dio = Dio();
   final url = 'https://mood-bot.onrender.com/user/signup';
   final data = {
-    "email": email,
-    "password": password,
-    "confirm_password": confirmPassword
-  };
+  "name": "Hanan",
+  "age": 30,
+  "email": "hanan@gmail.com",
+  "password": "hanan",
+  "confirm_password": "hanan"
+};
+
   try {
     final response = await dio.post(url,
           options: Options(
@@ -83,6 +86,9 @@ class AuthService extends GetxService {
 
       return user;
     } else {
+      if (response.statusCode != 200){
+        print(response.data);
+      }
       // Check if the response body is null
       print('status should not be 200 here');
       final errorBody = response.data != null ? response.data : null;
@@ -105,6 +111,7 @@ Future<bool> isLoggedIn() async {
 Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('user');
+    prefs.remove('access_token');
   }
 
 }
