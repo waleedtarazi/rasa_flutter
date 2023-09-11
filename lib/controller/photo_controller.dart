@@ -1,13 +1,13 @@
 // import 'dart:io';
 // import 'package:get/get.dart';
-// import 'package:graduation_project/controller/navigation.dart';
+// import '/controller/navigation.dart';
 // import 'package:image_picker/image_picker.dart';
-// import 'package:path/path.dart' as path;
+// // import 'package:path/path.dart' as path;
 // import 'package:path_provider/path_provider.dart';
 
 // import '../view/photo/save_image.dart';
 
-// // class PhotoController extens GetxController {
+// class PhotoController extends GetxController {
 //   var selectedImage = Rx<File?>(null);
 
 //   Future<void> pickImage() async {

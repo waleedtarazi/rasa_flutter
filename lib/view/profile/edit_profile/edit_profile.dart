@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/controller/user_profile_model.dart';
-import 'package:rasa_flutter/view/global/app_bar.dart';
-import 'package:rasa_flutter/view/profile/edit_profile/elements_edit_profile/change_information.dart';
+import '/controller/user_profile_model.dart';
+import '/view/global/app_bar.dart';
+import '/view/profile/edit_profile/elements_edit_profile/change_information.dart';
 import 'package:get/get.dart';
 import '../../global/navigation_bar.dart';
 class EditProfile extends StatelessWidget {

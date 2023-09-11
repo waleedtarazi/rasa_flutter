@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/global/drawer.dart';
+import '/view/global/drawer.dart';
 import '../../controller/home_page_controller.dart';
 import '/view/profile/user_information.dart';
 

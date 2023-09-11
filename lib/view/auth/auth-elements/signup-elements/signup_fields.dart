@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/age_field.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/living_location_field.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/phone_field.dart';
+import '/view/auth/auth-elements/signup-elements/age_field.dart';
+import '/view/auth/auth-elements/signup-elements/living_location_field.dart';
+import '/view/auth/auth-elements/signup-elements/phone_field.dart';
 import '../../../../controller/auth_controller.dart';
 import '/view/auth/auth-elements/signup-elements/password_conf.dart';
 import '/view/auth/auth-elements/signup-elements/user_name.dart';

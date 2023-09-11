@@ -37,23 +37,6 @@ class UserInformation extends StatelessWidget {
                     children: [
                       Positioned(
                         top: 35,
-                        right: 340,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(7),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            color: Color.fromRGBO(250, 250, 250, 0.5),
-                            child: Icon(
-                              Icons.notification_add_outlined,
-                              size: 30,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 35,
                         left: 100,
                         right: 100,
                         child: Container(
@@ -74,7 +57,7 @@ class UserInformation extends StatelessWidget {
                             color: Color.fromRGBO(250, 250, 250, 0.5),
 
                             child: IconButton(
-                              icon: Icon(Icons.menu_open_rounded,size: 30,color: Colors.white),
+                              icon: Icon(Icons.menu,size: 30,color: Colors.white),
 
                               onPressed: () {
                                 Scaffold.of(context).openDrawer();

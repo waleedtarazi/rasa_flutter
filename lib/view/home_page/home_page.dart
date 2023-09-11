@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/global/app_bar.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/all_button.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/doctors_button.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/personalitytest_button.dart';
+import '/view/global/app_bar.dart';
+import '/view/home_page/home_elements/all_button.dart';
+import '/view/home_page/home_elements/doctors_button.dart';
+import '/view/home_page/home_elements/personalitytest_button.dart';
 
 import '../../controller/home_page_controller.dart';
 import '../chat_bot/chat_bot_screen.dart';
@@ -14,6 +14,8 @@ import 'home_elements/chat_bot_button.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

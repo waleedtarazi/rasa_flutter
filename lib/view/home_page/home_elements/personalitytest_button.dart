@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/personalitytest/survey_screen.dart';
+import '/view/personalitytest/survey_screen.dart';
 class PersonalityTestButton extends StatelessWidget {
   const PersonalityTestButton({super.key});
 
@@ -52,7 +52,7 @@ class PersonalityTestButton extends StatelessWidget {
              ),
              SizedBox(height: 8), // Space between image and text
              Text(
-               'اختبارات ومقاييس',
+               'الاختبارات',
                style: TextStyle(
                  fontSize: 16,
                  fontWeight: FontWeight.bold,

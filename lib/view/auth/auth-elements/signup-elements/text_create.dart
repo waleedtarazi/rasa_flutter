@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/auth/auth-screens/signup_screen.dart';
+import '/view/auth/auth-screens/signup_screen.dart';
 class TextCreate extends StatelessWidget {
   const TextCreate({Key? key}) : super(key: key);
 

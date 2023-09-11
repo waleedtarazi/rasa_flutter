@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:rasa_flutter/constant/constant.dart';
-import 'package:rasa_flutter/screens/chat_screen.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:rasa_flutter/controller/user_profile_model.dart';
 
 import '../main.dart';
 
@@ -94,16 +97,15 @@ Future initLocalNotifications() async {
   }
 
 
-  Future<void> initNotification() async {
-    FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  Future<String?> initNotification() async {
+    final UserProfileModel userProfile = Get.put(UserProfileModel());
     await _firebaseMessaging.requestPermission();
     final FCMToken = await _firebaseMessaging.getToken();
     print('\n \n Token--> : $FCMToken\n \n');
-    storage.write('FCM',FCMToken);
-    final fcm_token = await storage.read('FCM');
-    print("FCM from local storage:\n" + fcm_token + "up\n");
+    print("FCM from local storage:\n" + '$FCMToken' + "up\n");
     initPushNotification();
     initLocalNotifications();
+    return FCMToken;
   }
 
 

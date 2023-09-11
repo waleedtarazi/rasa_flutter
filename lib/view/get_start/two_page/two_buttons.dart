@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/auth/auth-screens/signup_screen.dart';
+import '/view/auth/auth-screens/signup_screen.dart';
 import '../../Auth/Auth-screens/login_screen.dart';
 
 class TwoButtons extends StatelessWidget {

@@ -23,7 +23,7 @@ class AuthController extends GetxController{
   TextEditingController  phoneController = TextEditingController();
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   Future<String> loginApi(AuthController authController) async {
-    Uri url = Uri.parse(LOGINAPI);
+    Uri url = Uri.parse(Local_BASE+USER+SIGNIN);
     Map<String, String> headers = {
 
       "Accept": "application/json",
@@ -33,7 +33,6 @@ class AuthController extends GetxController{
     Map<String, dynamic> bodyData = {
       "email": authController.emailController.value.text,
       "password": authController.passwordController.value.text,
-      // fcm
     };
     try {
       http.Response loginResponse = await http.post(url, headers:headers, body:jsonEncode(bodyData));
@@ -58,7 +57,7 @@ class AuthController extends GetxController{
   }
 
   Future<String> signupApi(AuthController controller) async {
-    final url = Uri.parse(SIGNUPAPI);
+    final url = Uri.parse(Local_BASE+USER+SIGNUP);
     Map<String, String> headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -72,7 +71,6 @@ class AuthController extends GetxController{
       'age': controller.ageController.value.text,
       'phone': controller.phoneController.value.text,
       'living_location': controller.living_locationController.value.text,
-      // fcm
 
 
     };
@@ -110,8 +108,8 @@ class AuthController extends GetxController{
       print("after111111111111111111 decode");
       print(userData);
       storage.write('name', user.name);
-      storage.write('age', user.age);
-      storage.write('phone', user.phone);
+       storage.write('age', user.age);
+       storage.write('phone', user.phone);
       storage.write('email', user.email);
       storage.write('email', user.living_location);
 

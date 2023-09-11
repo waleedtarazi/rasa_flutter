@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/chat_bot_button.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/doctors_button.dart';
-import 'package:rasa_flutter/view/home_page/home_elements/personalitytest_button.dart';
+import '/view/home_page/home_elements/chat_bot_button.dart';
+import '/view/home_page/home_elements/doctors_button.dart';
+import '/view/home_page/home_elements/personalitytest_button.dart';
 class AllButton extends StatelessWidget {
   const AllButton({super.key});
 

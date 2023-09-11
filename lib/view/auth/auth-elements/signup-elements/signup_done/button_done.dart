@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/Auth/Auth-screens/login_screen.dart';
+import '/view/Auth/Auth-screens/login_screen.dart';
 import 'package:get/get.dart';
 class ButtonDone extends StatelessWidget {
   const ButtonDone({super.key});

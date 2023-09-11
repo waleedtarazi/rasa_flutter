@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/signup_done/button_done.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/signup_done/image_done.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/signup_done/text_done.dart';
+import '/view/auth/auth-elements/signup-elements/signup_done/button_done.dart';
+import '/view/auth/auth-elements/signup-elements/signup_done/image_done.dart';
+import '/view/auth/auth-elements/signup-elements/signup_done/text_done.dart';
 
 import '../../../../global/logo.dart';
 class SignupDone extends StatelessWidget {

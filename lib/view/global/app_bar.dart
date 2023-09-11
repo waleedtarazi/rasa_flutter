@@ -34,30 +34,30 @@ class UserAppBar extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
+                        // Positioned(
+                        //   top: 35,
+                        //   right: 340,
+                        //   child: ClipRRect(
+                        //     borderRadius: BorderRadius.circular(7),
+                        //     child: Container(
+                        //       height: 40,
+                        //       width: 40,
+                        //       color: Color.fromRGBO(250, 250, 250, 0.5),
+                        //       child: Icon(
+                        //         Icons.notification_add_outlined,
+                        //         size: 30,
+                        //         color: Color(0xFFF3F0FF),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Positioned(
-                          top: 35,
-                          right: 340,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(7),
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              color: Color.fromRGBO(250, 250, 250, 0.5),
-                              child: Icon(
-                                Icons.notification_add_outlined,
-                                size: 30,
-                                color: Color(0xFFF3F0FF),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 35,
+                          top: 30,
                           left: 100,
                           right: 100,
-                          child: Container(
-                            height: 50,
-                            width: 0,
+                          child: Center(
+                            // height: 50,
+                            // width: 0,
                             //color: Color.fromRGBO(250, 250, 250, 0.1),
                             child: Logo(),
                           ),
@@ -73,7 +73,7 @@ class UserAppBar extends StatelessWidget {
                               color: Color.fromRGBO(250, 250, 250, 0.5),
 
                               child: IconButton(
-                                icon: Icon(Icons.menu_open_rounded,size: 30,color: Color(0xFFF3F0FF)),
+                                icon: Icon(Icons.menu ,size: 30,color: Color(0xFFF3F0FF)),
 
                                 onPressed: () {
                                   Scaffold.of(context).openDrawer();

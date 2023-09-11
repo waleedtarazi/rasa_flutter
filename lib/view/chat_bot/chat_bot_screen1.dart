@@ -32,73 +32,30 @@ class ChatBotScreen extends GetView<ChatBotController> {
     builder: (controller) => Column(
       children: [
         Expanded(
-          child:Obx(
+          child: Obx(
                 () => ListView.builder(
               itemCount: controller.messages.length,
               itemBuilder: (context, index) {
                 final message = controller.messages[index];
 
-                if (message.isButton) {
-                  // Handle button messages
-                  final buttons = message.buttons;
-                  return Container(
-                    alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: message.isUser ? Color(0xFF3e2f87) : Color(0xFFF3F0FF),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
-                              for (var button in buttons)
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Handle button click here
-                                    controller.handleButton(button.payload);
-                                  },
-                                  child: Text(
-                                    button.title,
-                                    style: TextStyle(
-                                      color: message.isUser ? Colors.white : Colors.black,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
+                return Container(
+                  alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: message.isUser ? Color(0xFF3e2f87) : Color(0xFFF3F0FF),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  );
-                } else {
-                  // Handle text messages
-                  return Container(
-                    alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                      decoration: BoxDecoration(
-                        color: message.isUser ? Color(0xFF3e2f87) : Color(0xFFF3F0FF),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        message.text,
-                        style: TextStyle(
-                          color: message.isUser ? Colors.white : Colors.black,
-                          fontSize: 18,
-                        ),
-                      ),
+                    child: Text(
+                      message.text,
+                      style:message.isUser ? TextStyle(color: Colors.white,fontSize: 18):TextStyle(color: Colors.black,fontSize: 18),
                     ),
-                  );
-                }
+                  ),
+                );
               },
             ),
           ),
-
         ),
         Row(
           children: [

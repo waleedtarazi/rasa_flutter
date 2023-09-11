@@ -2,14 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/get_start/one_page/one_page.dart';
+import 'package:rasa_flutter/view/get_start/two_page/two_page.dart';
 import 'package:rasa_flutter/view/home_page/home_page.dart';
-import 'package:rasa_flutter/view/home_page/home_page_screen.dart';
-
-
-import '/view/Auth/Auth-screens/login_screen.dart';
 import 'api/firebase_api.dart';
-import 'constant/colors_constant.dart';
 import 'controller/user_profile_model.dart';
 
 
@@ -19,44 +14,37 @@ void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   // fire base
   await Firebase.initializeApp();
-  await FirebaseApi().initNotification();
+  String? fcm_token = await FirebaseApi().initNotification();
   // Create a new instance of FlutterSecureStorage
   const storage = FlutterSecureStorage();
   UserProfileModel userProfileModel = Get.put(UserProfileModel());
   await userProfileModel.readUserProfile();
   // Read the access token from secure storage
+  await storage.write(key: 'FCM', value: fcm_token);
+  String? temp = await storage.read(key: 'FCM');
+  print('the fcm token in the main'+ '$temp');
   final token = await storage.read(key: 'token');
   
   Get.put(HomeController());
 
-  runApp( MyApp(token: token));
+  runApp( MyApp(token: token, fcm_token: fcm_token));
 }
 
 class MyApp extends StatelessWidget {
   final String? token;
-  const MyApp({Key? key, this.token}) : super(key: key);
+  final String? fcm_token;
+  const MyApp({Key? key, this.token, this.fcm_token}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     UserProfileModel userProfileModel = Get.find();
     String name = userProfileModel.name;
     String email = userProfileModel.email;
-    return GetMaterialApp(
-      // supportedLocales: const [
-      //   Locale('ar','AR'), // English
-      // ],
-      // theme: ThemeData(
-      //   //primaryColor: primarycolor,
-      //   fontFamily: 'DGNadeen',
 
-      // ),
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
-      home:token != null ? HomePage() : const OnePage(),
-      // getPages: [
-      //   GetPage(name: "/login_screen", page: ()=>const LoginScreen())
-      //
-      // ],
+      home:token != null ? const HomePage() : const TwoPage(),
     );
 
   }
@@ -64,8 +52,7 @@ class MyApp extends StatelessWidget {
 class HomeController extends GetxController {
   final FlutterSecureStorage storage = Get.put(FlutterSecureStorage());
   final RxBool isLoggedIn = false.obs;
-  // final  name = ''.obs;
-  // String email = '';
+  
   Future<void> logout() async {
     // Remove the access token from secure storage
     await storage.delete(key: 'token');
@@ -77,7 +64,7 @@ class HomeController extends GetxController {
     isLoggedIn.value = false;
 
     // Navigate to the login screen
-    Get.offAll(() => const OnePage());
+    Get.offAll(() => const TwoPage());
   }
 
 }

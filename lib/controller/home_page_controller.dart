@@ -7,6 +7,8 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     userProfile.fetchUserProfile();
+    print('On Init user profile');
+    userProfile.SendFCM();
     //userProfile.readUserProfile();
 
     super.onInit();

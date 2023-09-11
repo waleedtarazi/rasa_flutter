@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/signup_done/signup_done.dart';
-import 'package:rasa_flutter/view/chat_bot/chat_bot_screen.dart';
-import 'package:rasa_flutter/view/home_page/home_page_screen.dart';
-import 'package:rasa_flutter/view/personalitytest/survey_screen.dart';
-import 'package:rasa_flutter/view/settings/settings_screen.dart';
+import '/view/auth/auth-elements/signup-elements/signup_done/signup_done.dart';
+import '/view/chat_bot/chat_bot_screen.dart';
+import '/view/home_page/home_page_screen.dart';
+import '/view/personalitytest/survey_screen.dart';
+import '/view/settings/settings_screen.dart';
 
 import '../../model/home_view_model.dart';
 import '../doctors/doctor_guide_screen.dart';
@@ -27,7 +27,7 @@ class UserNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(icon: Image.asset('assets/images/chat.png',width: 22,
           height: 22,
-          color: Color(0xFF3e2f87),),label: "محادثة لطيفة",),
+          color: Color(0xFF3e2f87),),label: "محادثة بسيط",),
         BottomNavigationBarItem(icon: Icon(Icons.people_outline,color: Color(0xFF3e2f87)),label: "دليل الأطباء"),
         BottomNavigationBarItem(icon: Image.asset('assets/images/choose.png',width: 22,
           height: 22,

@@ -1,14 +1,18 @@
 import 'dart:convert';
-
-// import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-// import 'package:graduationproject/model/SurveyModel.dart';
+
 import 'package:http/http.dart' as http;
+
+import '../constant/constant.dart';
+import '../view/personalitytest/SurveyScreen2.dart';
 
 class SurveyController extends GetxController {
   RxString res = ''.obs;
+
   var isloading = false.obs;
   var count = 2;
+  var one = 1;
+  String api = 'answer';
   @override
   void onInit() {
     super.onInit();
@@ -19,11 +23,12 @@ class SurveyController extends GetxController {
     try {
       isloading(true);
       http.Response response =
-          await http.get(Uri.parse('http://192.168.1.101/Anxiety1'));
+          await http.get(Uri.parse(Local_BASE+DIAGNOSE+'$api$one'));
 
       if (response.statusCode == 200) {
         print('status code is:');
         print(response.statusCode);
+        print('this is fetch data');
         print(utf8.decode(response.bodyBytes));
         res.value = utf8.decode(response.bodyBytes);
       } else {
@@ -39,14 +44,38 @@ class SurveyController extends GetxController {
   senddata(String answer) async {
     try {
       isloading(true);
-      var url = 'http://192.168.1.101/Anxiety$count';
+      var url = Local_BASE+DIAGNOSE+'$api$count';
       Map data = {"answer": answer};
       var body = json.encode(data);
       var response = await http.post((Uri.parse(url)),
           headers: {"Content-Type": "application/json"}, body: body);
       print("${response.statusCode}");
-      print(utf8.decode(response.bodyBytes));
       res.value = utf8.decode(response.bodyBytes);
+      print(res.value);
+      print(res.value.substring(0, 2));
+      if (res.value.substring(0, 2) == '"ي') {
+        Get.to(SurveyScreen2(ViewString: res.value));
+      } else if (res.value == '"على ما يبدو انك تعاني من اضطرابات الصدمة"') {
+        api = 'PSTD';
+        count = 1;
+        this.fetchdata();
+      } else if (res.value == '"على ما يبدو انك تعاني من اضطرابات قلق"') {
+        count = 1;
+        api = 'Anxiety';
+        this.fetchdata();
+      } else if (res.value == '"على ما يبدو انك تعاني من اضطرابات مزاج"') {
+        api = 'Mood';
+        count = 1;
+        this.fetchdata();
+      } else if (res.value == '"على ما يبدو انك تعاني من اضطرابات طعام"') {
+        api = 'Eating';
+        count = 1;
+        this.fetchdata();
+      } else if (res.value == '"على ما يبدو انك تعاني من اضطرابات شخصية"') {
+        api = 'PD';
+        count = 1;
+        this.fetchdata();
+      }
       count += 1;
     } catch (e) {
       print(e);

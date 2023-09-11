@@ -54,7 +54,7 @@ class ChatBotButton extends StatelessWidget {
             ),
             SizedBox(height: 8), // Space between image and text
             Text(
-              'محادثك الآلي الذكي',
+              'محادثة بسيط',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasa_flutter/view/auth/auth-elements/signup-elements/text_create.dart';
+import '/view/auth/auth-elements/signup-elements/text_create.dart';
 import '/controller/auth_controller.dart';
 import '/view/global/logo.dart';
 import '../Auth-elements/Login-elements/button_login.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:rasa_flutter/view/profile/profile_user.dart';
+import '/view/profile/profile_user.dart';
 
 import '../../../../controller/photo_controller.dart';
 import '../../../../controller/user_profile_model.dart';
@@ -111,10 +111,14 @@ class ChangeInformation extends StatelessWidget {
       //SizedBox(height: 40,),
       Column(
       children: [
-        const SizedBox(height: 60,),
+      //   const SizedBox(height: 60,),
       // Column(
       //   children: [
-      //      Container(
+      //     Obx(() {
+      //       final selectedImage = controller.selectedImage.value;
+
+      //       return selectedImage != null
+      //           ? Container(
       //         width: 100,
       //         height: 100,
       //         decoration: BoxDecoration(
@@ -126,7 +130,7 @@ class ChangeInformation extends StatelessWidget {
       //         ),
       //       )
       //           : const Icon(Icons.person, size: 100);
-        
+      //     }),
       //     IconButton(
       //       alignment: Alignment.topLeft,
       //       icon: const Icon(Icons.camera_alt,size: 30,),
@@ -141,7 +145,7 @@ class ChangeInformation extends StatelessWidget {
 
 
 
-SizedBox(height: 80,),
+
 
       Row(
         children: [

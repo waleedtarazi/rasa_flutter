@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/doctors/doctor_guide_screen.dart';
+import '/view/doctors/doctor_guide_screen.dart';
 import 'package:get/get.dart';
 class DoctorsButton extends StatelessWidget {
   const DoctorsButton({super.key});
@@ -52,7 +52,7 @@ class DoctorsButton extends StatelessWidget {
             ),
             SizedBox(height: 8), // Space between image and text
             Text(
-              'قائمة الأطباء',
+              'دليل الأطباء',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

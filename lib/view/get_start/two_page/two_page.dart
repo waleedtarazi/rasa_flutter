@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/get_start/two_page/two_buttons.dart';
+import '/view/get_start/two_page/two_buttons.dart';
 import '../../global/logo.dart';
 
  class TwoPage extends StatelessWidget {

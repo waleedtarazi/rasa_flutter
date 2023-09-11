@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/profile/edit_profile/edit_profile.dart';
-import 'package:rasa_flutter/view/profile/edit_profile/elements_edit_profile/change_information.dart';
-import 'package:rasa_flutter/view/profile/profile_user.dart';
+import '/view/profile/edit_profile/edit_profile.dart';
+import '/view/profile/edit_profile/elements_edit_profile/change_information.dart';
+import '/view/profile/profile_user.dart';
 import 'package:get/get.dart';
 class ProfileIcon extends StatelessWidget {
   const ProfileIcon({super.key});

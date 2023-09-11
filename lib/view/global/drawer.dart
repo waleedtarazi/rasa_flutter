@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/felings/histogram_feelings.dart';
-import 'package:rasa_flutter/view/home_page/home_page_screen.dart';
-import 'package:rasa_flutter/view/photo/save_image.dart';
-import 'package:rasa_flutter/view/profile/edit_profile/edit_profile.dart';
-import 'package:rasa_flutter/view/profile/new_profile.dart';
-import 'package:rasa_flutter/view/profile/profile_user.dart';
+import '/felings/histogram_feelings.dart';
+import '/view/doctors/my_requests_screen.dart';
+import '/view/home_page/home_page_screen.dart';
+import '/view/photo/save_image.dart';
+import '/view/profile/edit_profile/edit_profile.dart';
+import '/view/profile/new_profile.dart';
+import '/view/profile/profile_user.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
@@ -55,12 +56,23 @@ class MyDrawer extends StatelessWidget {
                   },
                   child:Row(
                         children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            child: Icon(Icons.person, size: 60, color: Colors.grey.shade300,),
-                            radius: 40,
-                            //backgroundImage: NetworkImage(controller.photoURL.value),
-
+                          Container(
+                            //height: 50,
+                            //alignment: Alignment.topLeft,
+                            //margin: EdgeInsets.only(bottom: 470,top: 20),
+                            padding: EdgeInsets.all(0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(width: 5, color: Colors.white),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black12, blurRadius: 100,),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/27.jpg'),
+                              radius:50,
+                            ),
                           ),
                           SizedBox(width: 8),
                           Text(
@@ -85,7 +97,8 @@ class MyDrawer extends StatelessWidget {
               color: Color(0xFF3e2f87)
               ),),
             onTap: () {
-              Get.to(HomePage());
+              Get.to(() => HomePage());
+
             },
           ),
           ListTile(
@@ -96,11 +109,11 @@ class MyDrawer extends StatelessWidget {
                 color:Color(0xFF3e2f87)
             )),
             onTap: () {
-              Get.to(EditProfile());
+              Get.to(() =>EditProfile());
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings,size: 30,color:Color(0xFF3e2f87)),
+            leading: Icon(Icons.history,size: 30,color:Color(0xFF3e2f87)),
             title: Text('المشاعر',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -111,27 +124,27 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings,size: 30,color:Color(0xFF3e2f87)),
-            title: Text('صورة',style: TextStyle(
+            leading: Icon(Icons.sensor_occupied,size: 30,color:Color(0xFF3e2f87)),
+            title: Text('طلباتي للأطباء',style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color:Color(0xFF3e2f87)
             )),
             onTap: () {
-              //Get.to(() => PhotoPickerScreen());
+              Get.to(() => MyRequestsScreen());
             },
           ),
-          ListTile(
-            leading: Icon(Icons.settings,size: 30,color:Color(0xFF3e2f87)),
-            title: Text('صورة',style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color:Color(0xFF3e2f87)
-            )),
-            onTap: () {
-             // Get.to(() => DisplayImagePage(image: image));
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.settings,size: 30,color:Color(0xFF3e2f87)),
+          //   title: Text('صورة',style: TextStyle(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.bold,
+          //       color:Color(0xFF3e2f87)
+          //   )),
+          //   onTap: () {
+          //    // Get.to(() => DisplayImagePage(image: image));
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.open_in_new,size: 30,color:Color(0xFF3e2f87)),
             title: Text('تسجيل الخروج',style: TextStyle(

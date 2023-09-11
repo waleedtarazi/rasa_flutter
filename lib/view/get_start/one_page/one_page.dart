@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:rasa_flutter/view/get_start/two_page/summary.dart';
+import '/view/get_start/two_page/summary.dart';
 import '/view/get_start/one_page/start_button.dart';
 import '/view/Get_start/One_page/start_image.dart';
 class OnePage extends StatelessWidget {
